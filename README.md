@@ -18,9 +18,12 @@ title: 基于互联网大数据的事件智能抓取和画像
         2. PHP(后台语言)
 
 - **演示**
-    ![演示视频](http://qwe.cherwb.cn/data/demo.mp4)
+    ![演示视频1](http://qwe.cherwb.cn/data/demo.mp4)
     
     <iframe height=498 width=510 src="http://qwe.cherwb.cn/data/demo.mp4">
+	
+	![演示视频2](http://www.sinaegg.cn/demoshow.mp4)
+	<iframe height=498 width=510 src="http://www.sinaegg.cn/demoshow.mp4">
 
 -  **数据可视化地址**
     
