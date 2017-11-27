@@ -16,6 +16,8 @@ from Softbei.grab_data.sport.class_yongle_sport import YongleSport
 from Softbei.grab_data.void.class_yanchanhui import GetData
 import config
 from apscheduler.schedulers.blocking import BlockingScheduler
+from decorators import login_required
+
 import threading
 import datetime
 import sys
@@ -251,6 +253,7 @@ def hello_word():
 
 
 # 跳转不同的页面逻辑判断
+@login_required
 @app.route('/index/page')
 def to_page():
     page = request.args.get('p')
@@ -301,6 +304,7 @@ def logout():
 
 
 # 获取爬虫或者分析数据配置信息
+@login_required
 @app.route('/message', methods=['POST'])
 def get_message():
     task_name = request.form.get('task_name')  # 任务名
@@ -317,6 +321,7 @@ def get_message():
 
 
 # 获取爬虫或者分析数据配置信息
+@login_required
 @app.route('/message1', methods=['POST'])
 def get_message1():
     task_name = request.form.get('task_name')  # 任务名
@@ -336,6 +341,7 @@ def get_message1():
 
 
 # 查找分析任务配置数据
+@login_required
 @app.route('/json2', methods=['GET'])
 def scan4():
     args = int(request.args.get('status'))
@@ -354,7 +360,7 @@ def scan4():
 
         # 查找分析任务配置数据
 
-
+@login_required
 @app.route('/json2all', methods=['GET'])
 def scan5():
     args = int(request.args.get('status'))
@@ -372,6 +378,7 @@ def scan5():
 
 
 # 查找任务数据
+@login_required
 @app.route('/json', methods=['GET'])
 def scan():
     args = int(request.args.get('status'))
@@ -389,6 +396,7 @@ def scan():
 
 
 # 查找任务数据
+@login_required
 @app.route('/json1', methods=['GET'])
 def scan1():
     args = int(request.args.get('status'))
@@ -406,6 +414,7 @@ def scan1():
 
 
 # 这是获取所有的爬虫，包括历史和非历史
+@login_required
 @app.route('/jsonall', methods=['GET'])
 def scan3():
     args = int(request.args.get('status'))
@@ -423,6 +432,7 @@ def scan3():
 
 
 # 根据id获取爬虫配置信息
+@login_required
 @app.route('/querybyid', methods=['GET'])
 def scan2():
     args = int(request.args.get('id'))
@@ -435,6 +445,7 @@ def scan2():
 
 
 # 查找五个表中未分析的数据
+@login_required
 @app.route('/noanalyse', methods=['GET'])
 def search():
     args = request.args.get('table')
@@ -456,6 +467,7 @@ def search():
 
 
 # 删除指定表的数据
+@login_required
 @app.route("/datadelete", methods=['GET'])
 def deletebyid():
     tablename = request.args.get("table")
@@ -492,6 +504,7 @@ def to_json(result):
 
 
 # 删除爬虫数据
+@login_required
 @app.route('/deljson', methods=['GET'])
 def delete_task():
     args = request.args.get('delete')
@@ -657,6 +670,7 @@ def start_splider(id):
 
 
 # 启动线程
+@login_required
 @app.route('/start', methods=['GET'])
 def start():
     args = request.args.get('id')
@@ -679,6 +693,7 @@ def start():
 
 
 # 启动分析任务的爬虫
+@login_required
 @app.route('/starts', methods=['GET'])
 def starts():
     args = request.args.get('id')
@@ -687,6 +702,7 @@ def starts():
 
 
 # 停止爬虫线程
+@login_required
 @app.route('/stop', methods=['GET'])
 def stop_threading():
     print '调用停止线程的方法----------'
@@ -725,6 +741,7 @@ def aps_date(id):
 
 
 # 暂停爬虫
+@login_required
 @app.route('/pause')
 def pau():
     id = request.args.get('id')
@@ -732,6 +749,7 @@ def pau():
 
 
 # 恢复爬虫
+@login_required
 @app.route('/restart')
 def restart():
     id = request.args.get('id')
@@ -739,6 +757,7 @@ def restart():
 
 
 # 添加定时爬虫
+@login_required
 @app.route('/adding', methods=['POST'])
 def addjob():
     id = request.form.get('task_name')  # 爬虫名字
@@ -754,7 +773,7 @@ def addjob():
     print "爬虫类型是", type
     print "爬虫任务是", types
 
-
+@login_required
 @app.route('/startings', methods=['GET'])
 def startjobs():
     id = request.args.get('id')
@@ -774,6 +793,7 @@ def startjobs():
         return jsonify({"startmess": "ok"})
 
 
+@login_required
 @app.route('/starting', methods=['GET'])
 def startjob():
     id = request.args.get('id')
@@ -793,6 +813,7 @@ def startjob():
 
 
 # 启动频率爬虫
+@login_required
 @app.route('/addfre', methods=['GET'])
 def start_j():
     id = request.args.get('id')
@@ -812,6 +833,7 @@ def start_j():
 
 
 # 删除定时爬虫
+@login_required
 @app.route('/deling', methods=['GET'])
 def deljob():
     id = request.args.get('id')
@@ -820,6 +842,7 @@ def deljob():
 
 
 # 查看任务队列
+@login_required
 @app.route('/spliderqueueshow', methods=['GET'])
 def showQueue():
     # 简单返回任务的个数
