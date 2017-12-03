@@ -22,8 +22,9 @@ title: 基于互联网大数据的事件智能抓取和画像
     
     <iframe height=498 width=510 src="http://qwe.cherwb.cn/data/demo.mp4">
 	
-	![演示视频2](http://www.sinaegg.cn/demoshow.mp4)
-	<iframe height=498 width=510 src="http://www.sinaegg.cn/demoshow.mp4">
+    ![演示视频2](http://www.sinaegg.cn/demoshow.mp4)
+	
+    <iframe height=498 width=510 src="http://www.sinaegg.cn/detail.mp4">
 
 -  **数据可视化地址**
     
