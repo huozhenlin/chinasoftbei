@@ -253,8 +253,8 @@ def hello_word():
 
 
 # 跳转不同的页面逻辑判断
-@login_required
 @app.route('/index/page')
+@login_required
 def to_page():
     page = request.args.get('p')
     print page
@@ -304,8 +304,8 @@ def logout():
 
 
 # 获取爬虫或者分析数据配置信息
-@login_required
 @app.route('/message', methods=['POST'])
+@login_required
 def get_message():
     task_name = request.form.get('task_name')  # 任务名
     select_type = request.form.get('select_type')  # 任务
@@ -321,8 +321,8 @@ def get_message():
 
 
 # 获取爬虫或者分析数据配置信息
-@login_required
 @app.route('/message1', methods=['POST'])
+@login_required
 def get_message1():
     task_name = request.form.get('task_name')  # 任务名
     select_type = request.form.get('select_type')  # 任务
@@ -341,8 +341,8 @@ def get_message1():
 
 
 # 查找分析任务配置数据
-@login_required
 @app.route('/json2', methods=['GET'])
+@login_required
 def scan4():
     args = int(request.args.get('status'))
     result = Task.query.filter_by(status=args, type=2).all()
@@ -360,8 +360,8 @@ def scan4():
 
         # 查找分析任务配置数据
 
-@login_required
 @app.route('/json2all', methods=['GET'])
+@login_required
 def scan5():
     args = int(request.args.get('status'))
     result = Task.query.filter(Task.status == args, or_(Task.type == 2, Task.type == 3)).all()  # or
@@ -378,8 +378,8 @@ def scan5():
 
 
 # 查找任务数据
-@login_required
 @app.route('/json', methods=['GET'])
+@login_required
 def scan():
     args = int(request.args.get('status'))
     result = Task.query.filter_by(status=args, type=0).all()
@@ -396,8 +396,8 @@ def scan():
 
 
 # 查找任务数据
-@login_required
 @app.route('/json1', methods=['GET'])
+@login_required
 def scan1():
     args = int(request.args.get('status'))
     type = request.args.get('type')
@@ -414,8 +414,8 @@ def scan1():
 
 
 # 这是获取所有的爬虫，包括历史和非历史
-@login_required
 @app.route('/jsonall', methods=['GET'])
+@login_required
 def scan3():
     args = int(request.args.get('status'))
     # result = Task.query.filter_by(status=args).all()
@@ -432,8 +432,8 @@ def scan3():
 
 
 # 根据id获取爬虫配置信息
-@login_required
 @app.route('/querybyid', methods=['GET'])
+@login_required
 def scan2():
     args = int(request.args.get('id'))
     result = Task.query.filter_by(id=args).first()
@@ -445,8 +445,8 @@ def scan2():
 
 
 # 查找五个表中未分析的数据
-@login_required
 @app.route('/noanalyse', methods=['GET'])
+@login_required
 def search():
     args = request.args.get('table')
     if args == "sing":
@@ -467,8 +467,8 @@ def search():
 
 
 # 删除指定表的数据
-@login_required
 @app.route("/datadelete", methods=['GET'])
+@login_required
 def deletebyid():
     tablename = request.args.get("table")
     id = request.args.get("id")
@@ -504,8 +504,8 @@ def to_json(result):
 
 
 # 删除爬虫数据
-@login_required
 @app.route('/deljson', methods=['GET'])
+@login_required
 def delete_task():
     args = request.args.get('delete')
     print args
@@ -670,8 +670,8 @@ def start_splider(id):
 
 
 # 启动线程
-@login_required
 @app.route('/start', methods=['GET'])
+@login_required
 def start():
     args = request.args.get('id')
     status = request.args.get('status')
@@ -693,8 +693,8 @@ def start():
 
 
 # 启动分析任务的爬虫
-@login_required
 @app.route('/starts', methods=['GET'])
+@login_required
 def starts():
     args = request.args.get('id')
     from analyse_data_task import taks
@@ -702,8 +702,8 @@ def starts():
 
 
 # 停止爬虫线程
-@login_required
 @app.route('/stop', methods=['GET'])
+@login_required
 def stop_threading():
     print '调用停止线程的方法----------'
     args = request.args.get('status')
@@ -741,24 +741,24 @@ def aps_date(id):
 
 
 # 暂停爬虫
-@login_required
 @app.route('/pause')
+@login_required
 def pau():
     id = request.args.get('id')
     scheduler.pause_job(id)
 
 
 # 恢复爬虫
-@login_required
 @app.route('/restart')
+@login_required
 def restart():
     id = request.args.get('id')
     scheduler.resume_job(id)
 
 
 # 添加定时爬虫
-@login_required
 @app.route('/adding', methods=['POST'])
+@login_required
 def addjob():
     id = request.form.get('task_name')  # 爬虫名字
     time = request.form.get('task_time')  # 时间
@@ -773,8 +773,8 @@ def addjob():
     print "爬虫类型是", type
     print "爬虫任务是", types
 
-@login_required
 @app.route('/startings', methods=['GET'])
+@login_required
 def startjobs():
     id = request.args.get('id')
     print '获得启动定时任务传过来的id', id
@@ -793,8 +793,8 @@ def startjobs():
         return jsonify({"startmess": "ok"})
 
 
-@login_required
 @app.route('/starting', methods=['GET'])
+@login_required
 def startjob():
     id = request.args.get('id')
     print '获得启动定时任务传过来的id', id
@@ -813,8 +813,9 @@ def startjob():
 
 
 # 启动频率爬虫
-@login_required
+
 @app.route('/addfre', methods=['GET'])
+@login_required
 def start_j():
     id = request.args.get('id')
     print '获得启动定时任务传过来的id', id
@@ -833,8 +834,9 @@ def start_j():
 
 
 # 删除定时爬虫
-@login_required
+
 @app.route('/deling', methods=['GET'])
+@login_required
 def deljob():
     id = request.args.get('id')
     aps_date(id)
@@ -842,8 +844,9 @@ def deljob():
 
 
 # 查看任务队列
-@login_required
+
 @app.route('/spliderqueueshow', methods=['GET'])
+@login_required
 def showQueue():
     # 简单返回任务的个数
     splider_list = []
